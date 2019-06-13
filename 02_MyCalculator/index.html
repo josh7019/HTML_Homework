@@ -4,12 +4,119 @@
 <head>
     <meta charset="UTF-8">
     <title>My Calculator</title>
+    <style>
+        #caculate{
+            width:490px;
+            height:566px;
+            border:solid 2px;
+            position: relative;
+            margin: auto;
+        }
+        #caculate_top{
+            height:240px;
+            border:solid 2px;
+            position: relative;
+        }
+        #caculate_bottom{
+            height:320px;
+            border:solid 2px;
+            position: relative;
+        }
+        #button_left{
+            border:solid 1px;
+            position: relative;
+            width:60%;
+            height: 100%;
+        }
+        #button_right{
+            border:solid 1px;
+            position: absolute;
+            margin-left:61%;
+            width:38%;
+            height: 100%;
+        }
+        .bottom_line{
+            border:solid 1px;
+            position: relative;
+            height:24%;
+            text-align: center;
+        }
+        #button_left input{
+            width:30%;
+            height:80%;
+            margin-top: 6px;
+        }
+        #button_right input{
+            width:48%;
+            height:80%;
+            margin-top: 6px;
+        }
+        #answer{
+            position: relative;
+            border:solid 1px;
+            height: 20%;
+            margin-top: ;
+        }
+    </style>
 </head>
 
 <body>
 
    <p><a href="https://www.desmos.com/scientific" target="_blank">參考網路上面的計算機</a></p>
-    
+    <div id="caculate">
+        <!-- 計算機顯示區 -->
+        <div id="caculate_top">
+            <div id="answer"></div>
+        </div>
+        <!-- 計算機按鈕區 -->
+        <div id="caculate_bottom">
+            <!-- 右邊按鈕區 -->
+            <div id="button_right">
+                    <div class="bottom_line">
+                            <input type="button" value="+">
+                            <input type="button" value="－">
+                    </div>
+                    <div class="bottom_line">
+                            <input type="button" value="x">
+                            <input type="button" value="/">
+                    </div>
+                    <div class="bottom_line">
+                            <input type="button" value="%">
+                            <input type="button" value="?">
+                    </div>
+                    <div class="bottom_line">
+                            <input type="button" value="C">
+                            <input type="button" value="=">
+                    </div>
+            </div><!-- 右邊按鈕區結束 -->
+            <!-- 左邊按鈕區 -->
+            <div id=button_left>
+                <div class="bottom_line">
+                    <input type="button" value="1">
+                    <input type="button" value="2">
+                    <input type="button" value="3">
+                </div>
+                <div class="bottom_line">
+                    <input type="button" value="4">
+                    <input type="button" value="5">
+                    <input type="button" value="6">
+                </div>
+                <div class="bottom_line">
+                    <input type="button" value="7">
+                    <input type="button" value="8">
+                    <input type="button" value="9">
+                </div>
+                <div class="bottom_line">
+                        <input type="button" value="0">
+                        <input type="button" value=".">
+                        <input type="button" value="=">
+                </div>
+            </div><!-- 左邊按鈕區結束 -->
+            <!-- 右邊按鈕區 -->
+            
+            
+        </div><!-- 計算機按鈕區結束 -->
+    </div>
 </body>
 
 </html>
