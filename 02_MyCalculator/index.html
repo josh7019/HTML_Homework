@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>My Calculator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <style>
         #caculate{
             width:490px;
@@ -55,7 +56,8 @@
             position: relative;
             border:solid 1px;
             height: 20%;
-            margin-top: ;
+            font-size: 40px;
+            text-align: right;
         }
     </style>
 </head>
@@ -73,8 +75,8 @@
             <!-- 右邊按鈕區 -->
             <div id="button_right">
                     <div class="bottom_line">
-                            <input type="button" value="+">
-                            <input type="button" value="－">
+                            <input type="button" value="+" onclick="button_number()">
+                            <input type="button" value="－" >
                     </div>
                     <div class="bottom_line">
                             <input type="button" value="x">
@@ -85,29 +87,29 @@
                             <input type="button" value="?">
                     </div>
                     <div class="bottom_line">
+                            <input type="button" value="del">
                             <input type="button" value="C">
-                            <input type="button" value="=">
                     </div>
             </div><!-- 右邊按鈕區結束 -->
             <!-- 左邊按鈕區 -->
             <div id=button_left>
                 <div class="bottom_line">
-                    <input type="button" value="1">
-                    <input type="button" value="2">
-                    <input type="button" value="3">
+                    <input type="button" value="1" onclick="button_number(1)">
+                    <input type="button" value="2" onclick="button_number(2)">
+                    <input type="button" value="3" onclick="button_number(3)">
                 </div>
                 <div class="bottom_line">
-                    <input type="button" value="4">
-                    <input type="button" value="5">
-                    <input type="button" value="6">
+                    <input type="button" value="4" onclick="button_number(4)">
+                    <input type="button" value="5" onclick="button_number(5)">
+                    <input type="button" value="6" onclick="button_number(6)">
                 </div>
                 <div class="bottom_line">
-                    <input type="button" value="7">
-                    <input type="button" value="8">
-                    <input type="button" value="9">
+                    <input type="button" value="7" onclick="button_number(7)">
+                    <input type="button" value="8" onclick="button_number(8)">
+                    <input type="button" value="9" onclick="button_number(9)">
                 </div>
                 <div class="bottom_line">
-                        <input type="button" value="0">
+                        <input type="button" value="0" onclick="button_number(0)">
                         <input type="button" value=".">
                         <input type="button" value="=">
                 </div>
@@ -117,6 +119,19 @@
             
         </div><!-- 計算機按鈕區結束 -->
     </div>
+    <script>
+        function button_number(input_number){
+            if($("#answer").html().length>=16){
+                alert("版面塞不下")
+            }else{
+                $("#answer").html($("#answer").html()+input_number);
+            }
+            
+        }
+    </script>
+
+
+
 </body>
 
 </html>
