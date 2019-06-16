@@ -1,0 +1,66 @@
+#caculate{
+    width:490px;
+    height:566px;
+    border:solid 2px;
+    position: relative;
+    margin: auto;
+}
+#caculate_top{
+    height:240px;
+    border:solid 2px;
+    position: relative;
+}
+#caculate_bottom{
+    height:320px;
+    border:solid 2px;
+    position: relative;
+}
+#button_left{
+    border:solid 1px;
+    position: relative;
+    width:60%;
+    height: 100%;
+}
+#button_right{
+    border:solid 1px;
+    position: absolute;
+    margin-left:61%;
+    width:38%;
+    height: 100%;
+}
+.bottom_line{
+    border:solid 1px;
+    position: relative;
+    height:24%;
+    text-align: center;
+}
+.bottom_line2{
+    border:solid 1px;
+    position: relative;
+    height:32%;
+    text-align: center;
+}
+#button_left input{
+    width:30%;
+    height:80%;
+    margin-top: 6px;
+}
+#button_right input{
+    width:48%;
+    height:80%;
+    margin-top: 6px;
+}
+#answer{
+    position: relative;
+    border:solid 1px;
+    height: 20%;
+    font-size: 40px;
+    text-align: right;
+}
+#answer_history{
+    position: relative;
+    border:solid 1px;
+    height: 80%;
+    font-size: 40px;
+    text-align: right;
+}

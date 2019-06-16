@@ -5,61 +5,8 @@
     <meta charset="UTF-8">
     <title>My Calculator</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <style>
-        #caculate{
-            width:490px;
-            height:566px;
-            border:solid 2px;
-            position: relative;
-            margin: auto;
-        }
-        #caculate_top{
-            height:240px;
-            border:solid 2px;
-            position: relative;
-        }
-        #caculate_bottom{
-            height:320px;
-            border:solid 2px;
-            position: relative;
-        }
-        #button_left{
-            border:solid 1px;
-            position: relative;
-            width:60%;
-            height: 100%;
-        }
-        #button_right{
-            border:solid 1px;
-            position: absolute;
-            margin-left:61%;
-            width:38%;
-            height: 100%;
-        }
-        .bottom_line{
-            border:solid 1px;
-            position: relative;
-            height:24%;
-            text-align: center;
-        }
-        #button_left input{
-            width:30%;
-            height:80%;
-            margin-top: 6px;
-        }
-        #button_right input{
-            width:48%;
-            height:80%;
-            margin-top: 6px;
-        }
-        #answer{
-            position: relative;
-            border:solid 1px;
-            height: 20%;
-            font-size: 40px;
-            text-align: right;
-        }
-    </style>
+    <link rel="stylesheet" href="css/caculate.css">
+    <style></style>
 </head>
 
 <body>
@@ -69,26 +16,23 @@
         <!-- 計算機顯示區 -->
         <div id="caculate_top">
             <div id="answer"></div>
+            <div id="answer_history"></div>
         </div>
         <!-- 計算機按鈕區 -->
         <div id="caculate_bottom">
             <!-- 右邊按鈕區 -->
             <div id="button_right">
-                    <div class="bottom_line">
-                            <input type="button" value="+" onclick="button_number()">
-                            <input type="button" value="－" >
+                    <div class="bottom_line2">
+                            <input type="button" value="+" onclick="button_Arithmetic('+')">
+                            <input type="button" value="－" onclick="button_Arithmetic('-')">
                     </div>
-                    <div class="bottom_line">
-                            <input type="button" value="x">
-                            <input type="button" value="/">
+                    <div class="bottom_line2">
+                            <input type="button" value="x " onclick="button_Arithmetic('*')">
+                            <input type="button" value="/" onclick="button_Arithmetic('/')">
                     </div>
-                    <div class="bottom_line">
-                            <input type="button" value="%">
-                            <input type="button" value="?">
-                    </div>
-                    <div class="bottom_line">
-                            <input type="button" value="del">
-                            <input type="button" value="C">
+                    <div class="bottom_line2">
+                            <input type="button" value="del" onclick="button_del()">
+                            <input type="button" value="C" onclick="button_cancel()" >
                     </div>
             </div><!-- 右邊按鈕區結束 -->
             <!-- 左邊按鈕區 -->
@@ -110,8 +54,8 @@
                 </div>
                 <div class="bottom_line">
                         <input type="button" value="0" onclick="button_number(0)">
-                        <input type="button" value=".">
-                        <input type="button" value="=">
+                        <input type="button" value="." onclick="button_number('.')">
+                        <input type="button" value="=" onclick="button_caculate()">
                 </div>
             </div><!-- 左邊按鈕區結束 -->
             <!-- 右邊按鈕區 -->
@@ -120,13 +64,56 @@
         </div><!-- 計算機按鈕區結束 -->
     </div>
     <script>
+        
+        
+        // 數字鈕
         function button_number(input_number){
+        
             if($("#answer").html().length>=16){
-                alert("版面塞不下")
+                alert("不得大於16位數")
             }else{
                 $("#answer").html($("#answer").html()+input_number);
-            }
+            }            
+        }
+        
+        //四則運算符號
+        function button_Arithmetic(input_Arithmetic){
+            if($("#answer").html().length>=16){
+                alert("不得大於16位數")
+            }else{
+                //alert($("#answer").html().substring($("#answer").html().length-1,$("#answer").html().length))
+                //檢查最後字元是否為運算符號
+                var patt=/[+*-/%]/;
+                var match_answer=patt.test($("#answer").html().substring($("#answer").html().length-1,$("#answer").html().length));
+                
+                if(match_answer==false){
+                    $("#answer").html($("#answer").html()+input_Arithmetic);
+                }
+                
+            } 
+        }
+        //等於按鈕
+        function button_caculate(){
             
+            if($("#answer").html().length>0){
+                
+                var fn=$("#answer").html();
+                //$("#answer_history").html(fn+$("#answer_history").html(fn+"="+eval(fn)+"<br>"));
+                $("#answer").html(eval(fn));
+            }
+        }
+        //del按鈕
+        function button_del (){
+            if($("#answer").html().length>0){
+                
+                var fn=$("#answer").html();
+                $("#answer").html(fn.substring(0,$("#answer").html().length-1));
+            }
+        }
+
+        //取消按鈕
+        function button_cancel(){
+            $("#answer").html("")
         }
     </script>
 
