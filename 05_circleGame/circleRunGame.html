@@ -111,21 +111,28 @@
             <source  src="sound/select04.mp3" type="audio/mp3">
     </audio>
     <script>
-        let i;
-        let speedUp;
-        let rand;
-        let idCount=0
+        let i;          //轉動次數計數器
+        let speedUp;    //是否加速判斷值
+        let rand;       //轉盤隨機數
+        let idCount=0   //轉盤變色id碼
+        
+        
+        
+        
+        //點擊按鈕初始化及開始
         function start(){
-            let sound = document.getElementById("sound");
-            rand=parseInt(Math.random()*20)+40;
-            speedUp=false;
+            let startButton=document.getElementById("startButton");//開始按鈕
+            let sound = document.getElementById("sound"); //音效檔
+            startButton.disabled=true;      //按鈕disabled
+            rand=parseInt(Math.random()*20)+40;     
+            speedUp=false;  
             i=0;
                 runGame(rand);           
         }
-        
+        //轉盤轉動事件
         function runGame(rand){
             
-            if(i==rand){
+            if(i>=rand){
                 speedUp=true;
             }
             (speedUp?i--:i++)
@@ -133,7 +140,9 @@
             console.log(i);
             console.log(rand);
             
+            //停止轉動
             if(i<0){
+                startButton.disabled=false;     //釋放按鈕
                 return;
             }
             idCount++;
@@ -141,7 +150,7 @@
             setTimeout(function(){sound.currentTime=0;sound.play();runGame(rand);},(1500/i+20));
             
         }
-
+        //轉盤顏色變更
         function changeColor(){
             let getIdNow="box"+(idCount%26);
             let getIdLast="box"+((idCount+25)%26);
