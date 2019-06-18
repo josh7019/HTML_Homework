@@ -1,0 +1,156 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        #main_block{
+            
+            position: relative;
+            width:1200px;
+            height:700px;
+            margin:auto;
+            border: solid 1px;
+        }
+        #block_left{
+            position: relative;
+            float:left;
+            width:900px;
+            height: 100%;
+            border: solid 1px;
+        }
+        #block_right{
+            
+            float: right;
+            width: 296px;
+            height: 100%;
+            border: solid 1px;
+            
+        }
+        table{
+            border: solid 1px;
+            width: 100%;
+            height: 100%;
+        }
+        tr{
+            border: solid 1px;
+            height: 100px;
+            width: 100%;
+        }
+        td{
+            border: solid 1px;
+        }
+        #startButton{
+            position: relative;
+            top:85%;
+            width: 100%;
+            height:15%
+        }
+    </style>
+</head>
+<body>
+    <!-- 主區塊 -->
+    <div id="main_block"> 
+            <!-- 左方區塊 -->
+        <div id="block_left">
+            <table>
+                <tr>
+                    <td id="box0">1</td>
+                    <td id="box1">2</td>
+                    <td id="box2">3</td>
+                    <td id="box3">4</td>
+                    <td id="box4">5</td>
+                    <td id="box5">6</td>
+                    <td id="box6">7</td>
+                    <td id="box7">8</td>
+                    <td id="box8">9</td>
+
+                </tr>
+                <tr>
+                    <td id="box25">26</td>
+                    <td colspan="7" rowspan="4"></td>
+                    <td id="box9">10</td>
+                </tr>
+                <tr >
+                    <td id="box24">25</td>
+                    <td id="box10">11</td>
+                </tr>
+                <tr>
+                        <td id="box23">24</td>
+                        <td id="box11">12</td>
+                </tr>
+                <tr>
+                        <td id="box22">23</td>
+                        <td id="box12">13</td>
+                </tr>
+                <tr>
+                        <td id="box21">22</td>
+                        <td id="box20">21</td>
+                        <td id="box19">20</td>
+                        <td id="box18">19</td>
+                        <td id="box17">18</td>
+                        <td id="box16">17</td>
+                        <td id="box15">16</td>
+                        <td id="box14">15</td>
+                        <td id="box13">14</td>
+                </tr>
+                
+            </table>
+        </div>
+        <!-- 右方區塊 -->
+        <div id=block_right>
+            <input id="startButton" type="button" onclick="start()" value="start">
+        </div>
+    </div>
+    <!-- 音效 -->
+    <audio id="sound">
+            <source  src="sound/select04.mp3" type="audio/mp3">
+    </audio>
+    <script>
+        let i;
+        let speedUp;
+        let rand;
+        let idCount=0
+        function start(){
+            let sound = document.getElementById("sound");
+            rand=parseInt(Math.random()*20)+40;
+            speedUp=false;
+            i=0;
+                runGame(rand);           
+        }
+        
+        function runGame(rand){
+            
+            if(i==rand){
+                speedUp=true;
+            }
+            (speedUp?i--:i++)
+            console.log(speedUp);
+            console.log(i);
+            console.log(rand);
+            
+            if(i<0){
+                return;
+            }
+            idCount++;
+            changeColor();
+            setTimeout(function(){sound.currentTime=0;sound.play();runGame(rand);},(1500/i+20));
+            
+        }
+
+        function changeColor(){
+            let getIdNow="box"+(idCount%26);
+            let getIdLast="box"+((idCount+25)%26);
+            console.log("now="+getIdNow);
+            console.log("last="+getIdLast);
+            document.getElementById(getIdLast).style.backgroundColor="white";            
+            document.getElementById(getIdNow).style.backgroundColor="red";
+            
+        }
+    </script>
+</body>
+</html>
