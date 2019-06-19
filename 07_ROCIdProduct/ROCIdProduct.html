@@ -9,7 +9,7 @@
             width:500px;
             margin: auto;
             text-align: center;
-            border: 1px solid;
+            
         }
         #idCreateArea{
             width:500px;
@@ -20,27 +20,88 @@
 </head>
 <body>
     <div id=main_contain>
-            <label for="area">地區:</label>
-            <select id="area">
-                <option value="22">彰化</option>
+            <label for="city">地區:</label>
+            <select id="city">
+                <option value="0">隨機</option>
+                <option value="10">天龍國</option>
+                <option value="11">臺中市</option>
+                <option value="12">基隆市</option>
+                <option value="13">臺南市</option>
+                <option value="14">高雄市</option>
+                <option value="15">新北市</option>
+                <option value="16">宜蘭縣</option>
+                <option value="17">桃園市</option>
+                <option value="34">嘉義市</option>
+                <option value="18">新竹縣</option>
+                <option value="19">苗栗縣</option>
+                <option value="21">南投縣</option>
+                <option value="22">彰化縣</option>
+                <option value="35">新竹市</option>
+                <option value="23">雲林縣</option>
+                <option value="24">嘉義縣</option>
+                <option value="27">屏東縣</option>
+                <option value="28">花蓮縣</option>
+                <option value="29">臺東縣</option>
+                <option value="32">金門縣</option>
+                <option value="30">澎湖縣</option>
+                <option value="33">連江縣</option>
             </select>
             
             <label for="sex">性別:</label>
             <select id="sex">
+                <option value="0">隨機</option>
                 <option value="1">男</option>
                 <option value="2">女</option>
             </select>
             <input type="button" value="產生身分證號碼" onclick="createId()">
     </div>
     <hr>
-    <div id="idCreateArea">123</div>
+    <div id="idCreateArea">產生區:</div>
         
     <script>
         function createId(){
-            let letters='ABCDEFGHJKLMNPQRSTUVXYWZIO';            
-            let n12=parseInt(Math.random()*26);
-            let headMark=letters.substring(n12,n12+1);
-            alert(n12+headMark);
+            let letters='ABCDEFGHJKLMNPQRSTUVXYWZIO';     
+            let isRight=false;
+            let headMark;
+            let n1,n2,n3,n4,n5,n6,n7,n8,n9,n10,n11,sum;
+            let cityId=document.getElementById("city").value;
+            let sexId=document.getElementById("sex").value;
+            while(!isRight){
+                
+                //判斷使用者是否選擇地區
+                if (cityId == 0) {      
+                    let n12=parseInt(Math.random()*26);
+                    headMark = letters.substring(n12, n12 + 1);
+                    n1 = parseInt((n12 + 10) / 10);
+                    n2 = (n12 + 10) % 10;
+                }else{
+                    headMark=letters.substring(parseInt(cityId)-10,parseInt(cityId)-9)
+                    n1=parseInt(cityId.substring(0,1));
+                    n2=parseInt(cityId.substring(1,2));
+                }
+                
+                //判斷使用者是否選擇性別
+                if (sexId == 0) {      
+                    n3=parseInt(Math.random()*2+1);
+                }else{
+                    n3=parseInt(sexId);
+                }
+                
+                //末8碼隨機產生
+                n4=parseInt(Math.random()*10);
+                n5=parseInt(Math.random()*10);
+                n6=parseInt(Math.random()*10);
+                n7=parseInt(Math.random()*10);
+                n8=parseInt(Math.random()*10);
+                n9=parseInt(Math.random()*10);
+                n10=parseInt(Math.random()*10);
+                n11=parseInt(Math.random()*10);
+                
+                //驗證是否符合規則
+                sum=n1*1+n2*9+n3*8+n4*7+n5*6+n6*5+n7*4+n8*3+n9*2+n10*1+n11*1;
+                (sum%10==0)?isRight=true:isRight=false;     
+            }
+            document.getElementById("idCreateArea").innerHTML+="<br>身分證號碼:"+headMark+n3+n4+n5+n6+n7+n8+n9+n10+n11;
         }
     </script>
 </body>
