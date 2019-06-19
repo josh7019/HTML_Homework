@@ -15,7 +15,7 @@
         let range = prompt("請輸入欲查詢質數範圍");       //搜尋質數範圍
         let checkRange;     //檢查是否為質數範圍
         let changeLine = 0      //換行計數器
-        let isPrime=true;
+        let isPrime=true;       
         let isChangeLine = true;      //是否換行
         for (let i = 2; i <= range; i++) {
             checkRange = parseInt(i / 2);
@@ -28,10 +28,11 @@
                     isChangeLine = false;
                     isPrime=false;
                     break;
-                }    
-                //若無因數則產生該數<td>
+                }                    
                     isPrime=true;
             }
+            
+            //若無因數則產生該數<td>
             if(isPrime){
                 changeLine++;
                     document.write("<td>" + i + "</td>");

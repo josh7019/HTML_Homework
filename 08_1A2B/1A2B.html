@@ -1,0 +1,47 @@
+<script src="1A2B.js"></script>
+
+<h1>猜數字遊戲</h1>
+<hr>
+<input type="number" id="guess">
+<input type="button" onclick="doGuess()" value="Guess">
+<input type="button" onclick="reset(false)" value="Reset">
+<select id="answerLength" onchange="reset(false)">
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+</select>
+<hr>
+<div id="history"></div>
+
+<script>
+        let answer=creatAnswer(3);
+        let guessTimes=0;
+        let answerLength;
+         
+        function doGuess(){
+            let guess=document.getElementById("guess").value;
+            let result=checkAB(answer,guess);
+            let history="第"+guessTimes+"次:"+guess+"答案:"+result+"<br>"
+            document.getElementById("history").innerHTML+=history;
+            document.getElementById("guess").focus();
+            guessTimes++;
+            if(result==answerLength+"a0b"){
+                alert("賓果");
+                reset(true);
+            }else if(guessTimes==11){
+                alert("你輸了!答案是"+answer+"!!");
+                reset(true);
+            }
+        }
+        function reset(isPop){
+            answerLength=parseInt(document.getElementById("answerLength").value);
+            if(!isPop){if(!confirm('是否重來?')) return;}
+            
+            answer=creatAnswer(answerLength);
+            document.getElementById("history").innerHTML="";
+            document.getElementById("guess").focus();
+            guessTimes=0;
+            document.getElementById("guess").value="";
+        }
+    
+    </script>
