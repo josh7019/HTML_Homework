@@ -11,9 +11,16 @@
         #main_block{
             
             position: relative;
-            width:1200px;
+            width:1400px;
             height:700px;
             margin:auto;
+            border: solid 1px;
+        }
+        #block_mid{
+            position: relative;
+            float:left;
+            width:200px;
+            height: 100%;
             border: solid 1px;
         }
         #block_left{
@@ -38,71 +45,212 @@
         }
         tr{
             border: solid 1px;
-            height: 100px;
-            width: 100%;
+            
         }
         td{
             border: solid 1px;
         }
+        .chip{
+            border: solid 1px;
+            height: 100px;
+            width: 100%;
+        }
+        .box_td{
+            border: solid 1px;
+            height: 100px;
+            width: 100px;         
+        }
+        #chip_text{
+            height: 0px;
+        }
+        #chip_text>td{
+            border:0px;
+            height: 0px;
+        }
+        .chip_td{
+            width: 25%;
+            height:14%
+        }
+        .chip_td2{
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 50%;
+            height:14%;
+        }
+        .text{
+            position: relative;
+            border: solid 1px;
+            width:100%;
+            height:50px;
+            text-align: center;
+        }
+        #income{
+            position: relative;
+            border: solid 1px;
+            width:100%;
+            height:100px;
+            text-align: center;
+            font-size: 70px;
+            font-weight: 900;
+        }
         #startButton{
             position: relative;
-            top:85%;
+            margin-bottom:0px;
             width: 100%;
-            height:15%
+            height:100px;
+        }
+        #box21,#box7{
+            background-image: url("img/drink5.jpg");
+            background-size:contain;
+            background-repeat: no-repeat;
+        }
+        #box3,#box6,#box10,#box13,#box19,#box22,#box25{
+            background-image: url("img/drink1.jpg");
+            background-size:contain;
+            background-repeat: no-repeat;
+        }
+        #box5,#box24,#box17{
+            background-image: url("img/drink4.jpg");
+            background-size:contain;
+            background-repeat: no-repeat;
+        }
+        #box0,#box9,#box12,#box15{
+            background-image: url("img/drink2.jpg");
+            background-size:contain;
+            background-repeat: no-repeat;
+        }
+        #box11{
+            background-image: url("img/drink7.jpg");
+            background-size:contain;
+            background-repeat: no-repeat;
+        }
+        #box2,#box8,#box16,#box20{
+            background-image: url("img/drink3.jpg");
+            background-size:contain;
+            background-repeat: no-repeat;
+        }
+        #box1,#box4,#box23,#box14,#box18{
+            background-image: url("img/drink6.jpg");
+            background-size:contain;
+            background-repeat: no-repeat;
+        }
+        .chip_button{
+            width: 100%;
+            height: 50%;
+            font-size: 35px;
         }
     </style>
 </head>
-<body>
+<body style="background-image: url('')">
     <!-- 主區塊 -->
     <div id="main_block"> 
-            <!-- 左方區塊 -->
+            <!-- 左方轉盤區 -->
         <div id="block_left">
             <table>
                 <tr>
-                    <td id="box0">1</td>
-                    <td id="box1">2</td>
-                    <td id="box2">3</td>
-                    <td id="box3">4</td>
-                    <td id="box4">5</td>
-                    <td id="box5">6</td>
-                    <td id="box6">7</td>
-                    <td id="box7">8</td>
-                    <td id="box8">9</td>
-
+                    <td id="box0" class="box_td">0</td>
+                    <td id="box1" class="box_td">1</td>
+                    <td id="box2" class="box_td">2</td>
+                    <td id="box3" class="box_td">3</td>
+                    <td id="box4" class="box_td">4</td>
+                    <td id="box5" class="box_td">5</td>
+                    <td id="box6" class="box_td">6</td>
+                    <td id="box7" class="box_td">7</td>
+                    <td id="box8" class="box_td">8</td>
+        
                 </tr>
                 <tr>
-                    <td id="box25">26</td>
-                    <td colspan="7" rowspan="4"></td>
-                    <td id="box9">10</td>
-                </tr>
-                <tr >
-                    <td id="box24">25</td>
-                    <td id="box10">11</td>
+                    <td id="box25" class="box_td">25</td>
+                    <td colspan="7" rowspan="4" class="box_td"></td>
+                    <td id="box9" class="box_td">9</td>
                 </tr>
                 <tr>
-                        <td id="box23">24</td>
-                        <td id="box11">12</td>
+                    <td id="box24" class="box_td">24</td>
+                    <td id="box10" class="box_td">10</td>
                 </tr>
                 <tr>
-                        <td id="box22">23</td>
-                        <td id="box12">13</td>
+                    <td id="box23" class="box_td">23</td>
+                    <td id="box11" class="box_td">11</td>
                 </tr>
                 <tr>
-                        <td id="box21">22</td>
-                        <td id="box20">21</td>
-                        <td id="box19">20</td>
-                        <td id="box18">19</td>
-                        <td id="box17">18</td>
-                        <td id="box16">17</td>
-                        <td id="box15">16</td>
-                        <td id="box14">15</td>
-                        <td id="box13">14</td>
+                    <td id="box22" class="box_td">22</td>
+                    <td id="box12" class="box_td">12</td>
                 </tr>
-                
+                <tr>
+                    <td id="box21" class="box_td">21</td>
+                    <td id="box20" class="box_td">20</td>
+                    <td id="box19" class="box_td">19</td>
+                    <td id="box18" class="box_td">18</td>
+                    <td id="box17" class="box_td">17</td>
+                    <td id="box16" class="box_td">16</td>
+                    <td id="box15" class="box_td">15</td>
+                    <td id="box14" class="box_td">14</td>
+                    <td id="box13" class="box_td">13</td>
+                </tr>
+        
             </table>
         </div>
-        <!-- 右方區塊 -->
+        <!-- 中央投注區 -->
+        <div id="block_mid">
+            <table>
+                
+                <tr>
+                    <td class="chip_td">
+                        <input type="button" class="chip_button" value="↑">
+                        <input type="button" class="chip_button" value="↓">
+                    </td>
+                    <td colspan="2" class="chip_td2" style="background-image: url('img/drink1.jpg');">           
+                    </td>
+                    <td class="chip_td">0</td>
+                </tr>
+                <tr>
+                    <td class="chip_td">
+                        <input type="button" class="chip_button" value="↑">
+                        <input type="button" class="chip_button"  value="↓"></td>
+                    <td colspan="2" class="chip_td2" style="background-image: url('img/drink2.jpg');"></td>
+                    <td class="chip_td">1</td>
+                </tr><tr>
+                    <td class="chip_td">
+                            <input type="button" class="chip_button" value="↑">
+                            <input type="button" class="chip_button"  value="↓">
+                    </td>
+                    <td colspan="2" class="chip_td2" style="background-image: url('img/drink3.jpg');"></td>
+                    <td class="chip_td">2</td>
+                </tr><tr>
+                    <td class="chip_td">
+                            <input type="button" class="chip_button" value="↑">
+                            <input type="button" class="chip_button"  value="↓">
+                    </td>
+                    <td colspan="2" class="chip_td2" style="background-image: url('img/drink4.jpg');"></td>
+                    <td class="chip_td">3</td>
+                </tr><tr>
+                    <td class="chip_td">
+                            <input type="button" class="chip_button" value="↑">
+                            <input type="button" class="chip_button"  value="↓">
+                    </td>
+                    <td colspan="2" class="chip_td2" style="background-image: url('img/drink5.jpg');"></td>
+                    <td class="chip_td">4</td>
+                </tr><tr>
+                    <td class="chip_td">
+                            <input type="button" class="chip_button" value="↑">
+                            <input type="button" class="chip_button"  value="↓">
+                    </td>
+                    <td colspan="2" class="chip_td2" style="background-image: url('img/drink6.jpg');"></td>
+                    <td class="chip_td">5</td>
+                </tr><tr>
+                    <td class="chip_td">
+                            <input type="button" class="chip_button" value="↑">
+                            <input type="button" class="chip_button"  value="↓">
+                    </td>
+                    <td colspan="2" class="chip_td2" style="background-image: url('img/drink7.jpg');"></td>
+                    <td class="chip_td">6</td>
+                </tr>
+            </table>
+        </div>
+        <!-- 右方顯示區 -->
         <div id=block_right>
+            <div class="text">本輪得分</div>
+            <div id="income">500 point</div>
             <input id="startButton" type="button" onclick="start()" value="start">
         </div>
     </div>
@@ -115,16 +263,16 @@
         let speedUp;    //是否加速判斷值
         let rand;       //轉盤隨機數
         let idCount=0   //轉盤變色id碼
-        
-        
-        
+        let chip=new Array;
+        chip[0]=1;
         
         //點擊按鈕初始化及開始
         function start(){
             let startButton=document.getElementById("startButton");//開始按鈕
             let sound = document.getElementById("sound"); //音效檔
+            let income=document.getElementById("income");//本輪獲得分數
             startButton.disabled=true;      //按鈕disabled
-            rand=parseInt(Math.random()*20)+40;     
+            rand=parseInt(Math.random()*26)+40;     
             speedUp=false;  
             i=0;
                 runGame(rand);           
@@ -143,6 +291,7 @@
             //停止轉動
             if(i<0){
                 startButton.disabled=false;     //釋放按鈕
+                income_coin();              //呼叫結算分數income_coin()
                 return;
             }
             idCount++;
@@ -156,10 +305,40 @@
             let getIdLast="box"+((idCount+25)%26);
             console.log("now="+getIdNow);
             console.log("last="+getIdLast);
-            document.getElementById(getIdLast).style.backgroundColor="white";            
-            document.getElementById(getIdNow).style.backgroundColor="red";
-            
+            let lastStyle=document.getElementById(getIdLast).style;
+            let nowStyle=document.getElementById(getIdNow).style
+            nowStyle.borderColor="red";
+            nowStyle.borderWidth="5px";
+            lastStyle.borderColor="black";
+            lastStyle.borderWidth="1px";
+        }
+        //轉盤結束後計算得分
+        function income_coin(){
+            switch (idCount % 26) {
+
+                case 3: case 6: case 10: case 13: case 19: case 22: case 25:
+                income.innerHTML=chip[0]*5+" point";
+                    break;
+                case 1: case 4: case 23: case 14: case 18:
+                income.innerHTML=chip[0]*10+" point";
+                    break;
+                case 0: case 9: case 12: case 15:
+                income.innerHTML=chip[0]*15+" point";
+                    break;
+                case 2: case 8: case 16: case 20:
+                income.innerHTML=chip[0]*20+" point";
+                    break;
+                case 5: case 24: case 17:
+                income.innerHTML=chip[0]*30+" point";
+                    break;
+                case 21: case 7:
+                income.innerHTML=chip[0]*50+" point";
+                    break;
+                case 11:
+                income.innerHTML=chip[0]*80+" point";
+                    break;
+            }
         }
     </script>
 </body>
-</html>
+</html> 
