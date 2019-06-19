@@ -69,7 +69,8 @@
         }
         .chip_td{
             width: 25%;
-            height:14%
+            height:14%;
+            text-align: center;
         }
         .chip_td2{
             background-size: contain;
@@ -196,54 +197,54 @@
                 
                 <tr>
                     <td class="chip_td">
-                        <input type="button" class="chip_button" value="↑">
-                        <input type="button" class="chip_button" value="↓">
+                        <input type="button" class="chip_button" value="↑" onclick="chip_add(0,true)">
+                        <input type="button" class="chip_button" value="↓" onclick="chip_add(0,false)">
                     </td>
                     <td colspan="2" class="chip_td2" style="background-image: url('img/drink1.jpg');">           
                     </td>
-                    <td class="chip_td">0</td>
+                    <td  id="chipValue0" class="chip_td">0</td>
                 </tr>
                 <tr>
                     <td class="chip_td">
-                        <input type="button" class="chip_button" value="↑">
-                        <input type="button" class="chip_button"  value="↓"></td>
+                        <input type="button" class="chip_button" value="↑" onclick="chip_add(1,true)">
+                        <input type="button" class="chip_button" value="↓" onclick="chip_add(1,false)"></td>
                     <td colspan="2" class="chip_td2" style="background-image: url('img/drink2.jpg');"></td>
-                    <td class="chip_td">1</td>
+                    <td  id="chipValue1" class="chip_td">0</td>
                 </tr><tr>
                     <td class="chip_td">
-                            <input type="button" class="chip_button" value="↑">
-                            <input type="button" class="chip_button"  value="↓">
+                            <input type="button" class="chip_button" value="↑" onclick="chip_add(2,true)">
+                            <input type="button" class="chip_button" value="↓" onclick="chip_add(2,false)">
                     </td>
                     <td colspan="2" class="chip_td2" style="background-image: url('img/drink3.jpg');"></td>
-                    <td class="chip_td">2</td>
+                    <td  id="chipValue2" class="chip_td">0</td>
                 </tr><tr>
                     <td class="chip_td">
-                            <input type="button" class="chip_button" value="↑">
-                            <input type="button" class="chip_button"  value="↓">
+                            <input type="button" class="chip_button" value="↑" onclick="chip_add(3,true)">
+                            <input type="button" class="chip_button" value="↓" onclick="chip_add(3,false)">
                     </td>
                     <td colspan="2" class="chip_td2" style="background-image: url('img/drink4.jpg');"></td>
-                    <td class="chip_td">3</td>
+                    <td  id="chipValue3" class="chip_td">0</td>
                 </tr><tr>
                     <td class="chip_td">
-                            <input type="button" class="chip_button" value="↑">
-                            <input type="button" class="chip_button"  value="↓">
+                            <input type="button" class="chip_button" value="↑" onclick="chip_add(4,true)">
+                            <input type="button" class="chip_button" value="↓" onclick="chip_add(4,false)">
                     </td>
                     <td colspan="2" class="chip_td2" style="background-image: url('img/drink5.jpg');"></td>
-                    <td class="chip_td">4</td>
+                    <td  id="chipValue4" class="chip_td">0</td>
                 </tr><tr>
                     <td class="chip_td">
-                            <input type="button" class="chip_button" value="↑">
-                            <input type="button" class="chip_button"  value="↓">
+                            <input type="button" class="chip_button" value="↑" onclick="chip_add(5,true)">
+                            <input type="button" class="chip_button" value="↓" onclick="chip_add(5,false)">
                     </td>
                     <td colspan="2" class="chip_td2" style="background-image: url('img/drink6.jpg');"></td>
-                    <td class="chip_td">5</td>
+                    <td  id="chipValue5" class="chip_td">0</td>
                 </tr><tr>
                     <td class="chip_td">
-                            <input type="button" class="chip_button" value="↑">
-                            <input type="button" class="chip_button"  value="↓">
+                            <input type="button" class="chip_button" value="↑" onclick="chip_add(6,true)">
+                            <input type="button" class="chip_button" value="↓" onclick="chip_add(6,false)">
                     </td>
                     <td colspan="2" class="chip_td2" style="background-image: url('img/drink7.jpg');"></td>
-                    <td class="chip_td">6</td>
+                    <td id="chipValue6" class="chip_td">0</td>
                 </tr>
             </table>
         </div>
@@ -256,7 +257,7 @@
     </div>
     <!-- 音效 -->
     <audio id="sound">
-            <source  src="sound/select04.mp3" type="audio/mp3">
+            <!-- <source  src="sound/select04.mp3" type="audio/mp3"> -->
     </audio>
     <script>
         let i;          //轉動次數計數器
@@ -264,8 +265,6 @@
         let rand;       //轉盤隨機數
         let idCount=0   //轉盤變色id碼
         let chip=new Array;
-        chip[0]=1;
-        
         //點擊按鈕初始化及開始
         function start(){
             let startButton=document.getElementById("startButton");//開始按鈕
@@ -290,8 +289,7 @@
             
             //停止轉動
             if(i<0){
-                startButton.disabled=false;     //釋放按鈕
-                income_coin();              //呼叫結算分數income_coin()
+                stop();
                 return;
             }
             idCount++;
@@ -299,6 +297,16 @@
             setTimeout(function(){sound.currentTime=0;sound.play();runGame(rand);},(1500/i+20));
             
         }
+        function stop(){
+            startButton.disabled=false;     //釋放按鈕
+                income_coin();              //呼叫結算分數income_coin()
+
+                for(let i=0;i<7;i++){
+                let chipId="chipValue"+i;
+                document.getElementById(chipId).innerText=0;
+            }
+        }
+
         //轉盤顏色變更
         function changeColor(){
             let getIdNow="box"+(idCount%26);
@@ -314,30 +322,50 @@
         }
         //轉盤結束後計算得分
         function income_coin(){
+            
+            for(let i=0;i<7;i++){
+                let chipId="chipValue"+i;
+                chip[i]=parseInt(document.getElementById(chipId).innerText);
+            }
+            
             switch (idCount % 26) {
-
                 case 3: case 6: case 10: case 13: case 19: case 22: case 25:
                 income.innerHTML=chip[0]*5+" point";
                     break;
                 case 1: case 4: case 23: case 14: case 18:
-                income.innerHTML=chip[0]*10+" point";
+                income.innerHTML=chip[5]*10+" point";
                     break;
                 case 0: case 9: case 12: case 15:
-                income.innerHTML=chip[0]*15+" point";
+                income.innerHTML=chip[1]*15+" point";
                     break;
                 case 2: case 8: case 16: case 20:
-                income.innerHTML=chip[0]*20+" point";
+                income.innerHTML=chip[2]*20+" point";
                     break;
                 case 5: case 24: case 17:
-                income.innerHTML=chip[0]*30+" point";
+                income.innerHTML=chip[3]*30+" point";
                     break;
                 case 21: case 7:
-                income.innerHTML=chip[0]*50+" point";
+                income.innerHTML=chip[4]*50+" point";
                     break;
                 case 11:
-                income.innerHTML=chip[0]*80+" point";
+                income.innerHTML=chip[6]*80+" point";
                     break;
             }
+        }
+        //籌碼加減方法
+        function chip_add(idValue,isAdd){
+            let chipId="chipValue"+idValue;
+            let chipCount=parseInt(document.getElementById(chipId).innerText);
+            if(isAdd){
+                chipCount++;
+                document.getElementById(chipId).innerText=chipCount;
+            }else if(chipCount>0){
+                chipCount--;
+                document.getElementById(chipId).innerText=chipCount;
+            }else{
+                return;
+            }
+            
         }
     </script>
 </body>
