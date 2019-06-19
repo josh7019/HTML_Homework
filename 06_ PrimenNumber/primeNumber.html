@@ -14,25 +14,23 @@
     <script>
         let range = prompt("請輸入欲查詢質數範圍");       //搜尋質數範圍
         let checkRange;     //檢查是否為質數範圍
-        let changeLine=0      //換行計數器
-        let isChangeLine=true;      //是否換行
+        let changeLine = 0      //換行計數器
+        let isChangeLine = true;      //是否換行
         for (let i = 1; i <= range; i++) {
             checkRange = parseInt(i / 2);
             if (isChangeLine) {
                 document.write("<tr>");
             }
             for (let j = 2; j <= checkRange; j++) {
-                // console.log("i="+i);
-                // console.log("j="+j);
-                if (i % j == 0) {
+                if (i % j == 0) {       //判斷能否被j整除
                     console.log("j=" + j);
-                    isChangeLine=false;
+                    isChangeLine = false;
                     break;
                 }
-                else if (j == checkRange) {
+                else if (j == checkRange) {     //若無因數則產生該數<td>
                     changeLine++;
                     document.write("<td>" + i + "</td>");
-                    if(changeLine%25==0){isChangeLine=true;}else{isChangeLine=false;}
+                    (changeLine % 25 == 0)?isChangeLine = true:isChangeLine = false;  //每25個質數換列
                 }
             }
             if (isChangeLine) {
