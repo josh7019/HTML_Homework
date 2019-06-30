@@ -1,0 +1,62 @@
+0. 每個辦公室的業績狀況表:
+
+    SELECT of.officeCode,sum(od.priceeach*od.quantityordered) as '總銷售價格'
+    from offices of JOIN employees e on(of.officeCode=e.officeCode) 
+                    JOIN customers c on(e.employeeNumber=c.salesRepEmployeeNumber) 
+                    JOIN orders o on(c.customerNumber=o.customerNumber)
+                    join `orderdetails` od on(o.orderNumber=od.ordernumber)
+                    where o.status="shipped"
+    group by of.officeCode
+
+
+
+
+1. 業務業績排行榜, procedure  輸入時間區間參數
+
+    CREATE PROCEDURE `employeeTotalSale`(IN `starttime` DATE, IN `endtime` DATE)
+    BEGIN
+
+    SELECT e.employeeNumber,sum(od.priceeach*od.quantityordered) as 業務總銷售價
+    from employees e 
+				JOIN customers c on(e.employeeNumber=c.salesRepEmployeeNumber) 
+				JOIN orders o on(c.customerNumber=o.customerNumber)
+                join `orderdetails` od on(o.orderNumber=od.ordernumber)
+                WHERE status="Shipped" and orderDate BETWEEN starttime and endtime
+                group by e.employeeNumber order by 業務總銷售價 desc;
+
+    END
+
+
+2. 熱銷商品排行榜, procedure  輸入時間區間參數
+
+    CREATE PROCEDURE `productTotalSale`(IN `starttime` DATE, IN `endtime` DATE)
+        BEGIN
+
+            SELECT p.productName,sum(od.quantityordered) as 總銷售量
+            from orders o join `orderdetails` od on(o.orderNumber=od.ordernumber)
+                          join products p on (p.productCode=od.productCode)
+            WHERE status="Shipped" and orderDate BETWEEN starttime and endtime
+            group by p.productName order by 總銷售量 desc;
+
+        END
+
+3. 業務訂單取消的比例 orders.sttaus = canceled
+    
+    SELECT count(o.status) as 訂單總數,sum(o.status='cancelled') as cancel單總數,
+    sum(o.status='cancelled')/ count(o.status) as cancel單比例 
+    from employees e JOIN customers c on(e.employeeNumber=c.salesRepEmployeeNumber) 
+                     JOIN orders o on(c.customerNumber=o.customerNumber)
+
+
+4. 低於商品建議售價MSRP95%的訂單及其實際售價    msrp建議售價  buyprice 成本價     (procedure)
+
+    CREATE PROCEDURE `checkPrice`()
+        BEGIN
+            SELECT o.orderNumber,od.priceEach as 實際售價,
+            p.MSRP as 建議售價,p.buyPrice 	AS 成本單價 
+            from orders o join orderdetails od on (o.orderNumber=od.orderNumber) 
+                          join products p on(od.productCode=p.productCode)  
+            WHERE p.MSRP*0.95>od.priceEach;
+        END
+
+5. 當訂單資料被修改及刪除的時候記錄在 log 資料表中, 時間及所有資料欄位
