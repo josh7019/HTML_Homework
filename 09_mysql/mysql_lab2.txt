@@ -60,3 +60,16 @@
         END
 
 5. 當訂單資料被修改及刪除的時候記錄在 log 資料表中, 時間及所有資料欄位
+
+    #update觸發器
+        CREATE TRIGGER `updatecheck` AFTER UPDATE ON `orders`
+        FOR EACH ROW BEGIN
+        INSERT INTO log VALUES (old.orderNumber,old.orderDate,old.requiredDate,old.shippedDate,old.status,old.comments,old.customerNumber,now(),"update");
+        END
+
+    #insert觸發器
+
+        CREATE TRIGGER `insertcheck` AFTER INSERT ON `orders`
+        FOR EACH ROW BEGIN
+        INSERT INTO log VALUES (new.orderNumber,new.orderDate,new.requiredDate,new.shippedDate,new.status,new.comments,new.customerNumber,now(),"insert");
+        END
